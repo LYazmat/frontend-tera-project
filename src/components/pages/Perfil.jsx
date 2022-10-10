@@ -6,7 +6,7 @@ import { BsCameraFill } from "react-icons/bs";
 import { FaTrashAlt } from "react-icons/fa";
 
 export default function Perfil() {
-  const fields = [
+  const personalFields = [
     [
       {
         xs: "12",
@@ -73,7 +73,7 @@ export default function Perfil() {
               <FaTrashAlt />
             </Button>
           </div>
-          {fields.map((row, i) => {
+          {personalFields.map((row, i) => {
             return <InputList row={row} key={`personalfield_${i}`} />;
           })}
           <Row>
