@@ -74,7 +74,7 @@ export default function Perfil() {
             </Button>
           </div>
           {fields.map((row, i) => {
-            return <InputList row={row} key={`row_${i}`} />;
+            return <InputList row={row} key={`personalfield_${i}`} />;
           })}
           <Row>
             <Col className="col-10 col-sm-8 col-lg-6 col-xl-4 mb-3">
