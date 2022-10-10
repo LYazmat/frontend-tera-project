@@ -2,6 +2,8 @@ import React from "react";
 
 import { Col, Nav } from "react-bootstrap";
 
+import UserOption from "../molecules/UserOption";
+
 import { BsFillStarFill } from "react-icons/bs";
 
 import { Link } from "react-router-dom";
@@ -54,14 +56,9 @@ export default function Menu() {
             </Nav.Link>
           </Nav.Item>
         </Nav>
-        <div className="dropdown py-sm-4 mt-sm-auto ms-auto ms-sm-0 flex-shrink-1">
-          <Link
-            href="#"
-            className="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
-            id="dropdownUser1"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-          >
+        <UserOption />
+        {/*<Dropdown >
+          <Dropdown.Toggle>
             <img
               src="https://github.com/lyazmat.png"
               alt="Foto do Usuário"
@@ -70,7 +67,14 @@ export default function Menu() {
               className="rounded-circle"
             />
             <span className="d-none d-sm-inline mx-1 ms-2">Usuário</span>
-          </Link>
+          </Dropdown.Toggle>
+          <Link
+            href="#"
+            className="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
+            id="dropdownUser1"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          ></Link>
           <ul
             className="dropdown-menu dropdown-menu-dark text-small shadow"
             aria-labelledby="dropdownUser1"
@@ -88,7 +92,9 @@ export default function Menu() {
                 Perfil
               </Link>
             </li>
-            {/*<li><hr className="dropdown-divider"></li>*/}
+            <li>
+              <hr className="dropdown-divider" />
+            </li>
             <li>
               <Link className="dropdown-item" to="../templates/login.html">
                 Sair
@@ -102,7 +108,7 @@ export default function Menu() {
             <i className="text-warning fs-5 bi bi-box-arrow-in-right me-2"></i>
             <span className="d-none d-sm-inline mx-1 ms-2">Entrar</span>
           </Link>
-        </div>
+        </Dropdown>*/}
       </div>
     </Col>
   );

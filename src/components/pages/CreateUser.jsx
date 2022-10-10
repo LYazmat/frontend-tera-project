@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import Default from "../templates/Default";
+import { useNavigate } from "react-router-dom";
 import { Row, Col, Card, Button, Form, InputGroup } from "react-bootstrap";
 
-import { Link, useNavigate } from "react-router-dom";
-
-async function loginUser(credentials) {
-  return fetch("http://localhost:8080/users/login", {
+async function createUser(credentials) {
+  return fetch("http://localhost:8080/users/create", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -14,20 +13,20 @@ async function loginUser(credentials) {
   }).then((data) => data.json());
 }
 
-export default function Login() {
+export default function CreateUser() {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
+  const [passwordConfirm, setPasswordConfirm] = useState();
 
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const token = await loginUser({
+    const token = await createUser({
       email,
       password,
     });
-    console.log(token?.message);
-    // !!token && navigate("/create/user");
+    !!token && navigate("/");
   };
 
   return (
@@ -36,7 +35,7 @@ export default function Login() {
         <Col xs={10} md={8} lg={6} xl={5} xxl={4} className="pt-3 mx-auto">
           <Card>
             <Card.Body>
-              <h4 className="text-center py-3">LOGIN</h4>
+              <h4 className="text-center py-3">NOVO USUÁRIO</h4>
               <Form onSubmit={handleSubmit}>
                 <InputGroup className="mb-3 input-group-sm">
                   <InputGroup.Text>
@@ -62,20 +61,25 @@ export default function Login() {
                     onChange={(e) => setPassword(e.target.value)}
                   ></Form.Control>
                 </InputGroup>
+                <InputGroup className="mb-3 input-group-sm">
+                  <InputGroup.Text>Confirmar</InputGroup.Text>
+                  <Form.Control
+                    type="password"
+                    id="confirm-password"
+                    placeholder="Confirme a senha"
+                    aria-label="Confirme a senha"
+                    onChange={(e) => setPasswordConfirm(e.target.value)}
+                  ></Form.Control>
+                </InputGroup>
                 <div id="login-error"></div>
                 <div className="text-end">
-                  <Button type="submit" variant="success" id="btn-login">
-                    Entrar
+                  <Button type="submit" variant="success" id="btn-cadastrar">
+                    Cadastrar
                   </Button>
                 </div>
               </Form>
             </Card.Body>
           </Card>
-          <div className="small text-end p-1">
-            <span>
-              Novo usuário? <Link to="/create/user">Cadastre aqui</Link>.
-            </span>
-          </div>
         </Col>
       </Row>
     </Default>
