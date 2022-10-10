@@ -1,7 +1,15 @@
 import React, { useState } from "react";
 import Default from "../templates/Default";
 import { useNavigate } from "react-router-dom";
-import { Row, Col, Card, Button, Form, InputGroup } from "react-bootstrap";
+import {
+  Row,
+  Col,
+  Card,
+  Button,
+  Form,
+  InputGroup,
+  Alert,
+} from "react-bootstrap";
 
 async function createUser(credentials) {
   return fetch("http://localhost:8080/users/create", {
@@ -17,16 +25,27 @@ export default function CreateUser() {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [passwordConfirm, setPasswordConfirm] = useState();
+  const [alert, setAlert] = useState();
 
   const navigate = useNavigate();
 
+  const checkPassword = () => {
+    setAlert(
+      !(passwordConfirm === password) && (
+        <Alert variant={"danger"}>Senha diferente.</Alert>
+      )
+    );
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const token = await createUser({
+    checkPassword();
+    !alert ? console.log("Ok!") : console.log("Diferente!");
+    /**const token = await createUser({
       email,
       password,
     });
-    !!token && navigate("/");
+    // !!token && navigate("/");**/
   };
 
   return (
@@ -71,7 +90,7 @@ export default function CreateUser() {
                     onChange={(e) => setPasswordConfirm(e.target.value)}
                   ></Form.Control>
                 </InputGroup>
-                <div id="login-error"></div>
+                <div id="create-error">{alert}</div>
                 <div className="text-end">
                   <Button type="submit" variant="success" id="btn-cadastrar">
                     Cadastrar

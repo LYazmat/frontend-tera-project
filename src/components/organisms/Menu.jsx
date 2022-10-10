@@ -3,6 +3,7 @@ import React from "react";
 import { Col, Nav } from "react-bootstrap";
 
 import UserOption from "../molecules/UserOption";
+import EnterLogin from "../molecules/EnterLogin";
 
 import { BsFillStarFill } from "react-icons/bs";
 
@@ -57,58 +58,7 @@ export default function Menu() {
           </Nav.Item>
         </Nav>
         <UserOption />
-        {/*<Dropdown >
-          <Dropdown.Toggle>
-            <img
-              src="https://github.com/lyazmat.png"
-              alt="Foto do Usuário"
-              width="28"
-              height="28"
-              className="rounded-circle"
-            />
-            <span className="d-none d-sm-inline mx-1 ms-2">Usuário</span>
-          </Dropdown.Toggle>
-          <Link
-            href="#"
-            className="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
-            id="dropdownUser1"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-          ></Link>
-          <ul
-            className="dropdown-menu dropdown-menu-dark text-small shadow"
-            aria-labelledby="dropdownUser1"
-          >
-            <li>
-              <Link
-                className="dropdown-item"
-                to="../templates/configuracoes.html"
-              >
-                Configurações
-              </Link>
-            </li>
-            <li>
-              <Link className="dropdown-item" to="../templates/perfil.html">
-                Perfil
-              </Link>
-            </li>
-            <li>
-              <hr className="dropdown-divider" />
-            </li>
-            <li>
-              <Link className="dropdown-item" to="../templates/login.html">
-                Sair
-              </Link>
-            </li>
-          </ul>
-          <Link
-            to="/login"
-            className="d-flex align-items-center text-white text-decoration-none"
-          >
-            <i className="text-warning fs-5 bi bi-box-arrow-in-right me-2"></i>
-            <span className="d-none d-sm-inline mx-1 ms-2">Entrar</span>
-          </Link>
-        </Dropdown>*/}
+        <EnterLogin />
       </div>
     </Col>
   );
