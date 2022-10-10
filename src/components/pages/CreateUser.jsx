@@ -25,27 +25,22 @@ export default function CreateUser() {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [passwordConfirm, setPasswordConfirm] = useState();
-  const [alert, setAlert] = useState();
+  const [alert, setAlert] = useState(false);
 
   const navigate = useNavigate();
 
-  const checkPassword = () => {
-    setAlert(
-      !(passwordConfirm === password) && (
-        <Alert variant={"danger"}>Senha diferente.</Alert>
-      )
-    );
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-    checkPassword();
-    !alert ? console.log("Ok!") : console.log("Diferente!");
-    /**const token = await createUser({
-      email,
-      password,
-    });
-    // !!token && navigate("/");**/
+    if (password === passwordConfirm) {
+      const token = await createUser({
+        email,
+        password,
+      });
+      console.log(token);
+    } else {
+      setAlert(<Alert variant="danger">Deu ruim!</Alert>);
+    }
+    // !!token && navigate("/");
   };
 
   return (
@@ -61,6 +56,7 @@ export default function CreateUser() {
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Email
                   </InputGroup.Text>
                   <Form.Control
+                    required
                     type="email"
                     id="username"
                     placeholder="Informe seu email"
@@ -73,6 +69,7 @@ export default function CreateUser() {
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Senha
                   </InputGroup.Text>
                   <Form.Control
+                    required
                     type="password"
                     id="password"
                     placeholder="Senha"
@@ -83,6 +80,7 @@ export default function CreateUser() {
                 <InputGroup className="mb-3 input-group-sm">
                   <InputGroup.Text>Confirmar</InputGroup.Text>
                   <Form.Control
+                    required
                     type="password"
                     id="confirm-password"
                     placeholder="Confirme a senha"

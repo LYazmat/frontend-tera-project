@@ -27,6 +27,7 @@ export default function Login() {
       password,
     });
     console.log(token?.message);
+    console.log(token?.token);
     // !!token && navigate("/create/user");
   };
 
