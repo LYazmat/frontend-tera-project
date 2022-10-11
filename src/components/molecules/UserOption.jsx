@@ -1,5 +1,6 @@
 import { Dropdown } from "react-bootstrap";
 import Avatar from "../atoms/Avatar";
+import { Link } from "react-router-dom";
 
 import "../../styles/userOption.css";
 
@@ -21,10 +22,16 @@ export default function UserOption() {
       </Dropdown.Toggle>
 
       <Dropdown.Menu variant="dark" className="text-small shadow">
-        <Dropdown.Item href="/#">Configurações</Dropdown.Item>
-        <Dropdown.Item href="/perfil">Perfil</Dropdown.Item>
+        <Dropdown.Item as={Link} to="/#">
+          Configurações
+        </Dropdown.Item>
+        <Dropdown.Item as={Link} to="/perfil">
+          Perfil
+        </Dropdown.Item>
         <Dropdown.Divider className="bg-secondary" />
-        <Dropdown.Item href="/#">Sair</Dropdown.Item>
+        <Dropdown.Item as={Link} to="/#">
+          Sair
+        </Dropdown.Item>
       </Dropdown.Menu>
     </Dropdown>
   );
