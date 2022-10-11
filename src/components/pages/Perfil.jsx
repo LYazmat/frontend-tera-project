@@ -16,10 +16,10 @@ import {
 export default function Perfil() {
   return (
     <Default>
-      <div className="col-12 col-sm-10 col-md-8 col-lg-6 mx-auto border rounded-3 p-5 mt-4">
+      <div className="col-12 col-md-10 col-xl-6 mx-auto border rounded-3 p-5 mt-4">
         <Form>
           <div className="mb-4 text-center">
-            <Avatar width="224" height="224" className="rounded-circle mb-3" />
+            <Avatar width="150" height="150" className="rounded-circle mb-3" />
             <br />
             <Button type="button" variant="white">
               <BsCameraFill />
@@ -32,15 +32,22 @@ export default function Perfil() {
             return <InputList row={row} key={`personalfield_${i}`} />;
           })}
           <Row>
-            <Col className="col-10 col-sm-8 col-lg-6 col-xl-4 mb-3">
-              <Form.Label htmlFor="cep">CEP</Form.Label>
-              <Form.Control type="text" id="cep" aria-describedby="" />
+            <Form.Group as={Col} xm="10" sm="8" lg="6" xl="4" className="mb-3">
+              <Form.Label className="small" htmlFor="cep">
+                CEP
+              </Form.Label>
+              <Form.Control
+                size="sm"
+                type="text"
+                id="cep"
+                aria-describedby=""
+              />
               <div id="cepError" className="form-text text-danger"></div>
-            </Col>
+            </Form.Group>
             <Col className="col-2">
               <Form.Label htmlFor="find-cep">&nbsp;</Form.Label>
               <div>
-                <Button variant="light" id="find-cep">
+                <Button size="sm" variant="light" id="find-cep">
                   <i className="bi bi-search"></i>
                 </Button>
               </div>
@@ -55,13 +62,6 @@ export default function Perfil() {
           <div className="mt-2">
             <Button type="submit" variant="success" className="float-end">
               Salvar
-            </Button>
-            <Button
-              type="button"
-              variant="secondary"
-              className="float-end mx-2"
-            >
-              Cancelar
             </Button>
           </div>
         </Form>

@@ -1,5 +1,3 @@
-import React from "react";
-
 import { Col, Nav } from "react-bootstrap";
 
 import UserOption from "../molecules/UserOption";
@@ -8,6 +6,8 @@ import EnterLogin from "../molecules/EnterLogin";
 import { BsFillStarFill } from "react-icons/bs";
 
 import { Link } from "react-router-dom";
+
+import "../../styles/menu.css";
 
 export default function Menu() {
   return (
@@ -29,10 +29,10 @@ export default function Menu() {
         </Link>
         <Nav
           variant="pills"
-          className="flex-sm-column flex-row flex-nowrap flex-shrink-1 flex-sm-grow-0 flex-grow-1 mb-sm-auto mb-0 justify-content-center align-items-center align-items-sm-start"
+          className="w-100 flex-sm-column flex-row flex-nowrap flex-shrink-1 flex-sm-grow-0 flex-grow-1 mb-sm-auto mb-0 justify-content-center align-items-center align-items-sm-start"
           id="menu"
         >
-          <Nav.Item>
+          <Nav.Item className="w-100">
             <Nav.Link to="#" className="px-sm-0 px-2">
               <i className="text-info fs-5 bi bi-globe me-2"></i>
               <span className="ms-1 d-none d-sm-inline">Cursos</span>

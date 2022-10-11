@@ -2,7 +2,8 @@ import { Col, Form } from "react-bootstrap";
 
 export default function LabelFIeld(props) {
   return (
-    <Col
+    <Form.Group
+      as={Col}
       xs={props.col.xs}
       sm={props.col.sm}
       md={props.col.md}
@@ -11,12 +12,15 @@ export default function LabelFIeld(props) {
       className={props.col.className}
       key={`id_${props.col.name}`}
     >
-      <Form.Label htmlFor={props.col.name}>{props.col.title}</Form.Label>
+      <Form.Label className="small" htmlFor={props.col.name}>
+        {props.col.title}
+      </Form.Label>
       <Form.Control
+        size="sm"
         type={props.col.type}
         id={`id_${props.col.name}`}
         aria-describedby={props["aria-describedby"]}
       />
-    </Col>
+    </Form.Group>
   );
 }

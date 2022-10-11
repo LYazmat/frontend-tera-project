@@ -22,25 +22,35 @@ async function createUser(credentials) {
 }
 
 export default function CreateUser() {
-  const [email, setEmail] = useState();
+  /*const [email, setEmail] = useState();
   const [password, setPassword] = useState();
-  const [passwordConfirm, setPasswordConfirm] = useState();
+  const [passwordConfirm, setPasswordConfirm] = useState();*/
   const [alert, setAlert] = useState(false);
+
+  const handleChange = (event) => {
+    const name = event.target.name;
+    const value = event.target.value;
+    setInputs((values) => ({ ...values, [name]: value }));
+  };
+
+  const [inputs, setInputs] = useState({
+    email: "",
+    password: "",
+    confirmpassword: "",
+  });
 
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (password === passwordConfirm) {
-      const token = await createUser({
-        email,
-        password,
-      });
+
+    if (inputs.password === inputs.confirmpassword) {
+      const token = await createUser(inputs);
       console.log(token);
+      !!token?.token && navigate("/perfil");
     } else {
       setAlert(<Alert variant="danger">Deu ruim!</Alert>);
     }
-    // !!token && navigate("/");
   };
 
   return (
@@ -58,10 +68,11 @@ export default function CreateUser() {
                   <Form.Control
                     required
                     type="email"
-                    id="username"
+                    name="email"
+                    id="email"
                     placeholder="Informe seu email"
                     aria-label="Email de usuário"
-                    onChange={(e) => setEmail(e.target.value)}
+                    onChange={handleChange}
                   ></Form.Control>
                 </InputGroup>
                 <InputGroup className="mb-3 input-group-sm">
@@ -72,9 +83,10 @@ export default function CreateUser() {
                     required
                     type="password"
                     id="password"
+                    name="password"
                     placeholder="Senha"
                     aria-label="Senha"
-                    onChange={(e) => setPassword(e.target.value)}
+                    onChange={handleChange}
                   ></Form.Control>
                 </InputGroup>
                 <InputGroup className="mb-3 input-group-sm">
@@ -82,10 +94,11 @@ export default function CreateUser() {
                   <Form.Control
                     required
                     type="password"
-                    id="confirm-password"
+                    id="confirmpassword"
+                    name="confirmpassword"
                     placeholder="Confirme a senha"
                     aria-label="Confirme a senha"
-                    onChange={(e) => setPasswordConfirm(e.target.value)}
+                    onChange={handleChange}
                   ></Form.Control>
                 </InputGroup>
                 <div id="create-error">{alert}</div>
