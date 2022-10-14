@@ -5,7 +5,12 @@ import SociaField from "../molecules/SociaField";
 
 import { Row, Col, Button, Form } from "react-bootstrap";
 import { BsCameraFill } from "react-icons/bs";
+import { useState } from "react";
+
 import { FaTrashAlt } from "react-icons/fa";
+
+// https://coodesh.com/blog/candidates/carreiras/saiba-como-adicionar-mascara-em-react-na-criacao-de-formularios/
+import InputMask from "react-input-mask";
 
 import {
   locationFields,
@@ -14,6 +19,8 @@ import {
 } from "./fields/fieldsPerfil";
 
 export default function Perfil() {
+  const [cep, setCEP] = useState({});
+
   return (
     <Default>
       <div className="col-12 col-md-10 col-xl-6 mx-auto border rounded-3 p-5 mt-4">
@@ -37,6 +44,9 @@ export default function Perfil() {
                 CEP
               </Form.Label>
               <Form.Control
+                as={InputMask}
+                mask="99.999-999"
+                placeholder="Digite o CEP"
                 size="sm"
                 type="text"
                 id="cep"

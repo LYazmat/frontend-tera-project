@@ -33,7 +33,7 @@ export default function Menu() {
           id="menu"
         >
           <Nav.Item className="w-100">
-            <Nav.Link to="#" className="px-sm-0 px-2">
+            <Nav.Link as={Link} to="/" className="px-sm-0 px-2">
               <i className="text-info fs-5 bi bi-globe me-2"></i>
               <span className="ms-1 d-none d-sm-inline">Cursos</span>
             </Nav.Link>

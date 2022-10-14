@@ -4,13 +4,15 @@ import Menu from "../organisms/Menu";
 import { Container, Row, Col } from "react-bootstrap";
 
 export default function Default(props) {
+  const vertical = `pb-4 ${props.my ? "my-auto" : ""}`;
+
   return (
     <div className="wrapper">
       <Container fluid className="overflow-hidden">
         <Row className="vh-100 overflow-auto">
           <Menu />
           <Col className="d-flex flex-column h-sm-100">
-            <main className="pb-4 my-auto">
+            <main className={vertical}>
               <Container>{props.children}</Container>
             </main>
             <Footer />
@@ -20,3 +22,7 @@ export default function Default(props) {
     </div>
   );
 }
+
+Default.defaultProps = {
+  my: true,
+};

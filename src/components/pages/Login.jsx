@@ -40,9 +40,7 @@ export default function Login() {
               <h4 className="text-center py-3">LOGIN</h4>
               <Form onSubmit={handleSubmit}>
                 <InputGroup className="mb-3 input-group-sm">
-                  <InputGroup.Text>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Email
-                  </InputGroup.Text>
+                  <InputGroup.Text>&nbsp;&nbsp;&nbsp;Email</InputGroup.Text>
                   <Form.Control
                     type="email"
                     id="username"
@@ -52,9 +50,7 @@ export default function Login() {
                   ></Form.Control>
                 </InputGroup>
                 <InputGroup className="mb-3 input-group-sm">
-                  <InputGroup.Text>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Senha
-                  </InputGroup.Text>
+                  <InputGroup.Text>&nbsp;&nbsp;Senha</InputGroup.Text>
                   <Form.Control
                     type="password"
                     id="password"

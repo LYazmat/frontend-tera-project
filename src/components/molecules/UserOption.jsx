@@ -29,7 +29,7 @@ export default function UserOption() {
           Perfil
         </Dropdown.Item>
         <Dropdown.Divider className="bg-secondary" />
-        <Dropdown.Item as={Link} to="/#">
+        <Dropdown.Item as={Link} to="/login">
           Sair
         </Dropdown.Item>
       </Dropdown.Menu>
