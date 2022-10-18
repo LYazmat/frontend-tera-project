@@ -1,6 +1,14 @@
 import React, { useState } from "react";
 import Default from "../templates/Default";
-import { Row, Col, Card, Button, Form, InputGroup } from "react-bootstrap";
+import {
+  Row,
+  Col,
+  Card,
+  Button,
+  Form,
+  InputGroup,
+  Alert,
+} from "react-bootstrap";
 
 import { Link, useNavigate } from "react-router-dom";
 
@@ -17,6 +25,7 @@ async function loginUser(credentials) {
 export default function Login() {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
+  const [login, setLogin] = useState(true);
 
   const navigate = useNavigate();
 
@@ -28,7 +37,7 @@ export default function Login() {
     });
     console.log(token?.message);
     console.log(token?.token);
-    // !!token && navigate("/create/user");
+    !!token.token ? navigate("/") : setLogin(false);
   };
 
   return (
@@ -59,7 +68,11 @@ export default function Login() {
                     onChange={(e) => setPassword(e.target.value)}
                   ></Form.Control>
                 </InputGroup>
-                <div id="login-error"></div>
+                {!login && (
+                  <Alert variant="danger" id="login-error">
+                    Usuário ou senha incorreto(s)
+                  </Alert>
+                )}
                 <div className="text-end">
                   <Button type="submit" variant="success" id="btn-login">
                     Entrar

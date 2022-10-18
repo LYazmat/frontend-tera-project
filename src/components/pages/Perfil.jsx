@@ -1,3 +1,5 @@
+import React from "react";
+
 import Default from "../templates/Default";
 import Avatar from "../atoms/Avatar";
 import InputList from "../organisms/InputList";
@@ -18,8 +20,62 @@ import {
   socialFields,
 } from "./fields/fieldsPerfil";
 
+async function cepAPI(cep) {
+  return fetch(`https://viacep.com.br/ws/${cep}/json/`)
+    .then((data) => data.json())
+    .catch({
+      msg: "Não foi possível realizar a busca.",
+    });
+}
+
 export default function Perfil() {
-  const [cep, setCEP] = useState({});
+  const [info, setInfo] = useState({
+    id: "",
+    fistname: "",
+    lastname: "",
+    email: "",
+    password: "",
+    celphone: "",
+    telphone: "",
+    cep: "",
+    logradouro: "",
+    number: "",
+    city: "",
+    state: "",
+    district: "",
+    image: "",
+    instagran: "",
+    github: "",
+    linkedin: "",
+  });
+
+  // invoke setData from logged User
+  React.useEffect(() => {});
+
+  const onlyNumber = (cep) => {
+    return parseInt(cep.replace(/[^0-9]/g, ""));
+  };
+
+  const handleChange = (event) => {
+    const name = event.target.name;
+    const value =
+      name === "cep" ? onlyNumber(event.target.value) : event.target.value;
+    setInfo((values) => ({ ...values, [name]: value }));
+  };
+
+  const handleCep = async (event) => {
+    if (`${info.cep}`.length === 8) {
+      const data = await cepAPI(info.cep);
+      data?.erro
+        ? alert("Erro")
+        : setInfo((values) => ({
+            ...values,
+            logradouro: data.logradouro,
+            city: data.localidade,
+          }));
+      console.log(data);
+    }
+  };
 
   return (
     <Default>
@@ -36,7 +92,9 @@ export default function Perfil() {
             </Button>
           </div>
           {personalFields.map((row, i) => {
-            return <InputList row={row} key={`personalfield_${i}`} />;
+            return (
+              <InputList info={info} da row={row} key={`personalfield_${i}`} />
+            );
           })}
           <Row>
             <Form.Group as={Col} xm="10" sm="8" lg="6" xl="4" className="mb-3">
@@ -44,6 +102,7 @@ export default function Perfil() {
                 CEP
               </Form.Label>
               <Form.Control
+                name="cep"
                 as={InputMask}
                 mask="99.999-999"
                 placeholder="Digite o CEP"
@@ -51,13 +110,19 @@ export default function Perfil() {
                 type="text"
                 id="cep"
                 aria-describedby=""
+                onChange={handleChange}
               />
               <div id="cepError" className="form-text text-danger"></div>
             </Form.Group>
             <Col className="col-2">
               <Form.Label htmlFor="find-cep">&nbsp;</Form.Label>
               <div>
-                <Button size="sm" variant="light" id="find-cep">
+                <Button
+                  size="sm"
+                  variant="light"
+                  id="find-cep"
+                  onClick={handleCep}
+                >
                   <i className="bi bi-search"></i>
                 </Button>
               </div>
