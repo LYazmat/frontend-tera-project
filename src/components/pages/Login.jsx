@@ -83,7 +83,11 @@ export default function Login() {
           </Card>
           <div className="small text-end p-1">
             <span>
-              Novo usuário? <Link to="/create/user">Cadastre aqui</Link>.
+              Novo usuário?{" "}
+              <Link className="text-decoration-none" to="/create/user">
+                Cadastre aqui
+              </Link>
+              .
             </span>
           </div>
         </Col>

@@ -19,7 +19,10 @@ export default function LabelFIeld(props) {
         size="sm"
         type={props.col.type}
         id={`id_${props.col.name}`}
+        name={props.col.name}
         aria-describedby={props["aria-describedby"]}
+        value={props.info[props.col.name]}
+        onChange={props.handleChange}
       />
     </Form.Group>
   );

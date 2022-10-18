@@ -31,10 +31,9 @@ async function cepAPI(cep) {
 export default function Perfil() {
   const [info, setInfo] = useState({
     id: "",
-    fistname: "",
+    firstname: "",
     lastname: "",
     email: "",
-    password: "",
     celphone: "",
     telphone: "",
     cep: "",
@@ -72,9 +71,16 @@ export default function Perfil() {
             ...values,
             logradouro: data.logradouro,
             city: data.localidade,
+            district: data.bairro,
+            state: data.uf,
           }));
       console.log(data);
     }
+  };
+
+  const handleClick = (event) => {
+    event.preventDefault();
+    console.log(info);
   };
 
   return (
@@ -93,7 +99,12 @@ export default function Perfil() {
           </div>
           {personalFields.map((row, i) => {
             return (
-              <InputList info={info} da row={row} key={`personalfield_${i}`} />
+              <InputList
+                handleChange={handleChange}
+                info={info}
+                row={row}
+                key={`personalfield_${i}`}
+              />
             );
           })}
           <Row>
@@ -111,6 +122,9 @@ export default function Perfil() {
                 id="cep"
                 aria-describedby=""
                 onChange={handleChange}
+                onKeyUp={(e) => {
+                  e.key === "Enter" && handleCep();
+                }}
               />
               <div id="cepError" className="form-text text-danger"></div>
             </Form.Group>
@@ -129,13 +143,25 @@ export default function Perfil() {
             </Col>
           </Row>
           {locationFields.map((row, i) => {
-            return <InputList row={row} key={`locationfield_${i}`} />;
+            return (
+              <InputList
+                handleChange={handleChange}
+                info={info}
+                row={row}
+                key={`locationfield_${i}`}
+              />
+            );
           })}
           {socialFields.map((row, i) => {
             return <SociaField row={row} key={`socialfield_${i}`} />;
           })}
           <div className="mt-2">
-            <Button type="submit" variant="success" className="float-end">
+            <Button
+              onClick={handleClick}
+              type="button"
+              variant="success"
+              className="float-end"
+            >
               Salvar
             </Button>
           </div>

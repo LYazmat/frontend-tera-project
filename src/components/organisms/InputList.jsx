@@ -5,7 +5,14 @@ export default function InputList(props) {
   return (
     <Row>
       {props.row.map((col) => {
-        return <LabelField col={col} key={col.name} />;
+        return (
+          <LabelField
+            handleChange={props.handleChange}
+            info={props.info}
+            col={col}
+            key={col.name}
+          />
+        );
       })}
     </Row>
   );
