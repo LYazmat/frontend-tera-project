@@ -1,11 +1,13 @@
 import React from "react";
 
+import nouserimage from "../assets/nouserimage.gif";
+
 // src="https://github.com/lyazmat.png"
 
 export default function Avatar(props) {
   return (
     <img
-      src="https://hope.be/wp-content/uploads/2015/05/no-user-image.gif"
+      src={nouserimage}
       alt="Foto do Usuário"
       width={props.width}
       height={props.height}

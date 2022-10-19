@@ -11,7 +11,7 @@ export default function Curso(props) {
         <img src={props.curso.image} className="card-img-top" alt="..." />
         <Card.Body>
           <Button
-            to="/#"
+            to={`/curso/apresentacao/${props.curso.id}`}
             as={Link}
             variant="warning"
             className="fw-bold form-control mb-3"

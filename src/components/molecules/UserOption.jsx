@@ -22,7 +22,7 @@ export default function UserOption() {
       </Dropdown.Toggle>
 
       <Dropdown.Menu variant="dark" className="text-small shadow">
-        <Dropdown.Item as={Link} to="/#">
+        <Dropdown.Item as={Link} to="/config">
           Configurações
         </Dropdown.Item>
         <Dropdown.Item as={Link} to="/perfil">
