@@ -11,12 +11,17 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
+        {/* Cursos pages */}
         <Route path="/" element={<Cursos />} />
-        <Route path="/curso/apresentacao/:id" element={<CursoApresentacao />} />
+        <Route path="/curso/apresentacao/:id" element={<CursoApresentacao />} />         
+        
+        {/* Client create/edit rotes */}
+        <Route path="/create/user/" element={<CreateUser />} />
         <Route path="/perfil" element={<Perfil />} />
         <Route path="/config" element={<Configuracoes />} />
+
+        {/* Client auth route */}
         <Route path="/login" element={<Login />} />
-        <Route path="/create/user/" element={<CreateUser />} />
       </Routes>
     </BrowserRouter>
   );

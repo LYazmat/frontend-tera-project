@@ -20,6 +20,7 @@ import {
   socialFields,
 } from "./fields/fieldsPerfil";
 
+/** Call CEP API */
 async function cepAPI(cep) {
   return fetch(`https://viacep.com.br/ws/${cep}/json/`)
     .then((data) => data.json())
@@ -62,6 +63,7 @@ export default function Perfil() {
     setInfo((values) => ({ ...values, [name]: value }));
   };
 
+  /** Function to call CEP API */
   const handleCep = async (event) => {
     if (`${info.cep}`.length === 8) {
       const data = await cepAPI(info.cep);
